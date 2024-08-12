@@ -1,7 +1,7 @@
 #include "Game.h"
 #include "Config.h"
 
-const sf::Time Game::timePerFrame = sf::seconds(0.25f);
+const sf::Time Game::timePerFrame = sf::seconds(0.50f);
 
 Game::Game()
 	: m_window{sf::VideoMode(Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT), "Snake", sf::Style::Close}
@@ -46,38 +46,40 @@ void Game::handleEvents()
 void Game::handleInput(sf::Keyboard::Key key)
 {
 	using sf::Keyboard;
-	//switch (key) {
-	//case Keyboard::W:
-	//case Keyboard::Up:
-	//	if (m_snake.getDirection() != Direction::DOWN)
-	//		m_snake.changeDirection(Direction::UP);
-	//	break;
-	//case Keyboard::A:
-	//case Keyboard::Left:
-	//	if (m_snake.getDirection() != Direction::RIGHT)
-	//		m_snake.changeDirection(Direction::LEFT);
-	//	break;
-	//case Keyboard::S:
-	//case Keyboard::Down:
-	//	if (m_snake.getDirection() != Direction::UP)
-	//		m_snake.changeDirection(Direction::DOWN);
-	//	break;
-	//case Keyboard::D:
-	//case Keyboard::Right:
-	//	if (m_snake.getDirection() != Direction::LEFT)
-	//		m_snake.changeDirection(Direction::RIGHT);
-	//	break;
-	//}
+	switch (key) {
+	case Keyboard::W:
+	case Keyboard::Up:
+		if (m_snake.getDirection() != Direction::DOWN)
+			m_snake.changeDirection(Direction::UP);
+		break;
+	case Keyboard::A:
+	case Keyboard::Left:
+		if (m_snake.getDirection() != Direction::RIGHT)
+			m_snake.changeDirection(Direction::LEFT);
+		break;
+	case Keyboard::S:
+	case Keyboard::Down:
+		if (m_snake.getDirection() != Direction::UP)
+			m_snake.changeDirection(Direction::DOWN);
+		break;
+	case Keyboard::D:
+	case Keyboard::Right:
+		if (m_snake.getDirection() != Direction::LEFT)
+			m_snake.changeDirection(Direction::RIGHT);
+		break;
+	}
 }
 
 void Game::update(sf::Time dt)
 {
+	// I dont think we even need the dt
 
+	m_snake.move();
 }
 
 void Game::render()
 {
 	m_window.clear();
-	//renderer.render(m_window, m_snake, food);
+	m_window.draw(m_snake);
 	m_window.display();
 }
