@@ -9,6 +9,9 @@ Game::Game()
 {
 	m_window.setFramerateLimit(Config::FPS_LIMIT);
 	m_window.setKeyRepeatEnabled(false);
+	srand(time(nullptr));
+	m_food.x = rand() % 20;
+	m_food.y = rand() % 20;
 }
 
 void Game::run()
@@ -70,16 +73,21 @@ void Game::handleInput(sf::Keyboard::Key key)
 	}
 }
 
+#include <iostream>
 void Game::update(sf::Time dt)
 {
 	// I dont think we even need the dt
 
-	m_snake.move();
+	m_snake.update();
+	if (m_snake.isDead()) {
+		std::cout << "Game over!" << std::endl;
+	}
 }
 
 void Game::render()
 {
 	m_window.clear();
+	m_window.draw(m_food);
 	m_window.draw(m_snake);
 	m_window.display();
 }

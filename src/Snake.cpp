@@ -15,6 +15,17 @@ Snake::~Snake()
 {
 }
 
+void Snake::update()
+{
+	move();
+	checkCollision();
+}
+
+bool Snake::isDead() const
+{
+	return m_isDead;
+}
+
 void Snake::move()
 {
 	if (m_direction == Direction::NONE)
@@ -46,15 +57,13 @@ void Snake::grow()
 
 bool Snake::checkCollision() const
 {
-	return false; // for now (until we get the snake moving)
-
-	//auto it = m_body.cbegin();
-	//const sf::Vector2i& head = *it;
-	//while (++it != m_body.cend()) {
-	//	if (*it == head)
-	//		return true;
-	//}
-	//return false;
+	auto it = m_body.cbegin();
+	const sf::Vector2i& head = *it;
+	while (++it != m_body.cend()) {
+		if (*it == head)
+			return true;
+	}
+	return false;
 }
 
 Direction Snake::getDirection() const

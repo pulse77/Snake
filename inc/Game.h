@@ -21,4 +21,5 @@ private:
 	sf::View m_view;
 
 	Snake m_snake;
+	Food m_food;
 };
