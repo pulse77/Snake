@@ -8,7 +8,7 @@ Snake::Snake()
 	m_segmentRect.setFillColor(sf::Color::Green);
 	m_segmentRect.setOutlineColor(sf::Color::Cyan);
 	m_segmentRect.setOutlineThickness(0.2f);
-	m_segmentRect.setSize(sf::Vector2f(30.0f, 30.0f));
+	m_segmentRect.setSize(sf::Vector2f(60.0f, 60.0f));
 }
 
 Snake::~Snake()

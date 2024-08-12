@@ -1,7 +1,7 @@
 #include "Game.h"
 #include "Config.h"
 
-const sf::Time Game::timePerFrame = sf::seconds(0.50f);
+const sf::Time Game::timePerFrame = sf::seconds(0.15f);
 
 Game::Game()
 	: m_window{sf::VideoMode(Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT), "Snake", sf::Style::Close}
