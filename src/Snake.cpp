@@ -52,13 +52,23 @@ void Snake::move()
 
 void Snake::grow()
 {
-	m_body.emplace_back(m_body.back());
+	for (int i = 0; i < 5; i++)
+		m_body.emplace_back(m_body.back());
+}
+
+bool Snake::eat(Food& food)
+{
+	if (m_body.front() == food.pos)
+		return true;
+	return false;
 }
 
 bool Snake::checkCollision() const
 {
 	auto it = m_body.cbegin();
 	const sf::Vector2i& head = *it;
+	if (head.x < 0 || head.x >= 20 || head.y < 0 || head.y >= 20)
+		return true;
 	while (++it != m_body.cend()) {
 		if (*it == head)
 			return true;

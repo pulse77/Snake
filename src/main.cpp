@@ -2,7 +2,9 @@
 
 int main()
 {
-	Game game;
-	game.run();
+	while (true) {
+		Game game;
+		game.run();
+	}
 	return 0;
 }

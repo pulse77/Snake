@@ -10,14 +10,15 @@ Game::Game()
 	m_window.setFramerateLimit(Config::FPS_LIMIT);
 	m_window.setKeyRepeatEnabled(false);
 	srand(time(nullptr));
-	m_food.x = rand() % 20;
-	m_food.y = rand() % 20;
+	m_food.pos.x = rand() % 20;
+	m_food.pos.y = rand() % 20;
 }
 
 void Game::run()
 {
 	sf::Clock clock;
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
+	m_snake.grow();
 	while (m_window.isOpen()) {
 		timeSinceLastUpdate += clock.restart();
 		while (timeSinceLastUpdate > timePerFrame) {
@@ -78,9 +79,16 @@ void Game::update(sf::Time dt)
 {
 	// I dont think we even need the dt
 
-	m_snake.update();
-	if (m_snake.isDead()) {
+	m_snake.move();
+	if (m_snake.eat(m_food)) {
+		m_snake.grow();
+		m_food.pos.x = rand() % 20;
+		m_food.pos.y = rand() % 20;
+	}
+	
+	if (m_snake.checkCollision()) {
 		std::cout << "Game over!" << std::endl;
+		m_window.close();
 	}
 }
 

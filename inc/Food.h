@@ -3,11 +3,11 @@
 
 struct Food : sf::Drawable
 {
-	int x, y;
+	sf::Vector2i pos;
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override {
 		sf::CircleShape circle(30.0f);
-		circle.setPosition(sf::Vector2f(x * 60, y * 60));
+		circle.setPosition(sf::Vector2f(pos.x * 60, pos.y * 60));
 		circle.setFillColor(sf::Color::Red);
 		target.draw(circle);
 	}
